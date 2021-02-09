@@ -1,0 +1,141 @@
+﻿@model List<SerhatBilen.Models.Makaleler>
+@{
+    ViewBag.Title = "Document";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <section class="section_all bg-light" style=" background: linear-gradient(to right, #182848, #5758bb);">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section_title text-center">
+                        <h3 class="font-weight-bold">Dökümanlar</h3>
+                        <div class="vr_line mx-auto d-block"></div>
+                        <p class="sec_subtitle mx-auto text-muted pt-2">Adım atmaktan korkma ve ne olursa olsun vazgeçme hastalığına yakalanma</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <style>
+                /* Style the buttons that are used to open and close the accordion panel */
+                .accordion {
+                    background-color: #eee;
+                    color: #444;
+                    cursor: pointer;
+                    padding: 18px;
+                    width: 100%;
+                    text-align: left;
+                    border: none;
+                    outline: none;
+                    transition: 0.4s;
+                }
+
+                    /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+                    .active, .accordion:hover {
+                        background-color: #ccc;
+                    }
+
+                .panel {
+                    padding: 0 18px;
+                    background-color: white;
+                    max-height: 0;
+                    overflow: hidden;
+                    transition: max-height 0.2s ease-out;
+                }
+
+                .accordion:after {
+                    content: '\02795'; /* Unicode character for "plus" sign (+) */
+                    font-size: 13px;
+                    color: #777;
+                    float: right;
+                    margin-left: 5px;
+                }
+
+                .active:after {
+                    content: "\2796"; /* Unicode character for "minus" sign (-) */
+                }
+            </style>
+
+
+            @if (Model != null)
+            {
+                foreach (SerhatBilen.Models.Makaleler item in Model)
+                {
+                <button class="accordion">@item.baslik</button>
+                <div class="panel">
+                    <b>@item.konu</b>
+                    <p>@item.icerik <a href="@item.kaynak" target="_blank">[Kaynak]</a></p>
+                </div>
+                }
+            }
+                <script>
+                    var acc = document.getElementsByClassName("accordion");
+                    var i;
+
+                    for (i = 0; i < acc.length; i++) {
+                        acc[i].addEventListener("click", function () {
+                            this.classList.toggle("active");
+                            var panel = this.nextElementSibling;
+                            if (panel.style.maxHeight) {
+                                panel.style.maxHeight = null;
+                            } else {
+                                panel.style.maxHeight = panel.scrollHeight + "px";
+                            }
+                        });
+                    }
+                </script>
+
+                @*<div id="panelss" class="target" style="padding-bottom: 15px;">
+                @if (Model != null)
+                {
+                    foreach (SerhatBilen.Models.Makaleler item in Model)
+                    {
+                        <h3>
+                            @item.baslik
+                        </h3>
+                        <p>
+                            <b>
+                                @item.konu
+                            </b>
+                            <br />
+                            @item.icerik
+                            <a style="color: blue" href='@item.kaynak' target="_blank">[Kaynak]</a>
+                            <br />
+                            <br />
+                            <label><b>Yorum</b></label>
+                            <br />
+                            <asp:TextBox id="txtYorum" runat="server" CssClass="form-control"></asp:TextBox>
+                            <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65625" required="required"> </textarea>
+                            <br />
+                            <label><b>İsim *</b></label>
+                            <br />
+                            <input id="author" name="author" type="text" value size="30" maxlength="245" required="required" />
+                            <br />
+                            <label><b>E Posta *</b></label>
+                            <br />
+                            <input type="email" name="email" value size="30" maxlength="100" aria-describedby="email-notes" required="required" />
+                            <br />
+                            <label><b>İnternet Sitesi</b></label>
+                            <br />
+                            <input id="url" name="url" type="url" value size="30" maxlength="200" />
+                            <br />
+                            <input type="submit" name="submit" id="submit" onclick="submit_Click" value="Yorum Gönder" />
+                            <br />
+                        </p>
+                    }
+                }
+            </div>
+            <script>
+                $("#panelss").accordion({
+                    collapsible: true,
+                    event: "click",
+                    animate: 300,
+                    active: Node,
+                    heightStyle: true,
+                    icons: { header: "ui-icon-plus", activeHeader: "ui-icon-minus" }
+                });
+            </script>*@
+            </div>
+    </section>
+    
